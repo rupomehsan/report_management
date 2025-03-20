@@ -72,9 +72,9 @@ return new class extends Migration
             $table->bigInteger('union_kormoporishod_boithok_women_total')->nullable();
             $table->bigInteger('union_kormoporishod_boithok_women_target')->nullable();
             $table->bigInteger('union_kormoporishod_boithok_women_uposthiti')->nullable();
-            
-            
-            
+
+
+
             $table->bigInteger('upojela_team_boithok_man_total')->nullable();
             $table->bigInteger('upojela_team_boithok_man_target')->nullable();
             $table->bigInteger('upojela_team_boithok_man_uposthiti')->nullable();
@@ -344,7 +344,7 @@ return new class extends Migration
             $table->bigInteger('associate_member_sommelon_women_total')->nullable();
             $table->bigInteger('associate_member_sommelon_women_target')->nullable();
             $table->bigInteger('associate_member_sommelon_women_uposthiti')->nullable();
-            
+
             // other
             $table->bigInteger('other_man_total')->nullable();
             $table->bigInteger('other_man_target')->nullable();
@@ -353,9 +353,6 @@ return new class extends Migration
             $table->bigInteger('other_women_target')->nullable();
             $table->bigInteger('other_women_uposthiti')->nullable();
 
-
-            $table->bigInteger('creator')->nullable();
-            $table->bigInteger('status')->nullable();
 
             // Others
             $table->bigInteger('others_man_total')->nullable();

@@ -238,10 +238,10 @@
         Route::post('/store-single', [App\Http\Controllers\Report\Thana\Songothon\ThanaSongothon10IyanotDataController::class, 'store_single'])->middleware(ThanaStatusChack::class);
     });
 
-    // Route::group(['prefix' => 'thana-songothon11-sangothonik-boithoks'], function () {
-    //     Route::get('/data', [App\Http\Controllers\Report\Thana\Songothon\ThanaSongothon11SangothonikBoithokController::class, 'get_data']);
-    //     Route::post('/store-single', [App\Http\Controllers\Report\Thana\Songothon\ThanaSongothon11SangothonikBoithokController::class, 'store_single'])->middleware(ThanaStatusChack::class);
-    // });
+    Route::group(['prefix' => 'thana-songothon11-sangothonik-boithoks'], function () {
+        Route::get('/data', [App\Http\Controllers\Report\Thana\Songothon\ThanaSongothon11SangothonikBoithokController::class, 'get_data']);
+        Route::post('/store-single', [App\Http\Controllers\Report\Thana\Songothon\ThanaSongothon11SangothonikBoithokController::class, 'store_single'])->middleware(ThanaStatusChack::class);
+    });
 
 
     Route::group(['prefix' => 'thana-proshikkhon1-tarbiat'], function () {

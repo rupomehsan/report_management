@@ -25,13 +25,11 @@ class WardBmExpensesTableSeeder extends Seeder
                         'amount' => 100 * rand(1, 5),
                         'date' => "2024-" . str_pad($j, 2, '0', STR_PAD_LEFT) . "-01",
                         'ward_bm_expense_category_id' => $k,
-
                         'creator' => 6 + $i,
                         'status' => 1,
                     ]);
                 }
             }
         }
-
     }
 }

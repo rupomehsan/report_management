@@ -28,7 +28,7 @@ return new class extends Migration
             $table->bigInteger('mattrivasha_dibosh_attend')->nullable();
 
             $table->bigInteger('international_womens_day_total_programs')->nullable();
-            $table->bigInteger('international_womens_day_attend')->nullable();
+
 
             $table->bigInteger('may_day_total_programs')->nullable();
             $table->bigInteger('international_womens_day')->nullable();

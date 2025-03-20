@@ -40,7 +40,7 @@ export default {
         },
         thana_id: {
             type: Number,
-            required: true,
+            required: false,
             default: 0,
         },
         month: {

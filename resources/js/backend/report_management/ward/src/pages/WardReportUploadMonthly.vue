@@ -10911,14 +10911,14 @@
                                                     formatBangla(
                                                         average_uposthiti
                                                             ?.ward_rastrio2_kormoshuchi_bastobayons
-                                                            ?.centrally_announced_political_program
+                                                            ?.centrally_announced_political_program_attend
                                                     )
                                                 "
                                                 @change="
                                                     average_data_upload(
                                                         $event,
                                                         'ward-rastrio2-kormoshuchi-bastobayon',
-                                                        rastrio2.centrally_announced_political_program
+                                                        rastrio2.centrally_announced_political_program_attend
                                                     )
                                                 "
                                                 type="text"
