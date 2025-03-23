@@ -12,6 +12,8 @@ use Database\Seeders\Bm\Expense\UnitExpenseTargetLogsTableSeeder;
 use Database\Seeders\Bm\Expense\UnitExpenseTargetsTableSeeder;
 use Database\Seeders\Bm\Income\BmCategoryUsersTableSeeder;
 use Database\Seeders\Bm\Income\BmPaidsTableSeeder;
+use Database\Seeders\Bm\Thana\Expense\ThanaBmExpenseCategoriesTableSeeder;
+use Database\Seeders\Bm\Thana\Income\ThanaBmIncomeCategoriesTableSeeder;
 use Database\Seeders\Bm\Ward\Expense\WardBmExpenseCategoriesTableSeeder;
 use Database\Seeders\Bm\Ward\Expense\WardBmExpensesTableSeeder;
 use Database\Seeders\Bm\Ward\Expense\WardExpenseTargetsTableSeeder;
@@ -126,6 +128,8 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         $this->call([
+            ThanaBmExpenseCategoriesTableSeeder::class,
+            ThanaBmIncomeCategoriesTableSeeder::class,
             // users table
             UsersTableSeeder::class,
             UserRolesTableSeeder::class,

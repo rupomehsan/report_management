@@ -13,6 +13,7 @@ class ThanaBmExpenseCategoriesTableSeeder extends Seeder
      */
     public function run(): void
     {
+
         ThanaBmExpenseCategory::truncate();
         ThanaBmExpenseCategory::create([
             'title' => 'নিছাব পরিশোধ',

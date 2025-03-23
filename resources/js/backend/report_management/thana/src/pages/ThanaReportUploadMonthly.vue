@@ -6439,6 +6439,7 @@
                         </tr>
                     </tbody>
                 </table>
+
                 <p>*সংগঠন অনুমোদিত</p>
                 <div class="do_not_print">
                     <popup-note
@@ -7483,7 +7484,23 @@
                                 <td>
                                     <div class="d-flex">
                                         <div class="position-relative">
-                                            --
+                                            <input
+                                                name="iftar_mahfil_personal_uposthiti"
+                                                :value="
+                                                    formatBangla(
+                                                        report_sum_data
+                                                            ?.thana_kormosuci_bastobayons
+                                                            ?.iftar_mahfil_personal_uposthiti
+                                                    )
+                                                "
+                                                @change="
+                                                    data_upload(
+                                                        'thana-kormosuci-bastobayon'
+                                                    )
+                                                "
+                                                :type="type"
+                                                class="bg-input w-100 text-center"
+                                            />
                                             <popup
                                                 :ward_id="
                                                     report_header?.ward_info?.id
@@ -7496,7 +7513,24 @@
                                         </div>
                                         /
                                         <div class="position-relative">
-                                            --
+                                            <input
+                                                name="iftar_mahfil_samostic_uposthiti"
+                                                :value="
+                                                    formatBangla(
+                                                        report_sum_data
+                                                            ?.thana_kormosuci_bastobayons
+                                                            ?.iftar_mahfil_samostic_uposthiti
+                                                    )
+                                                "
+                                                @change="
+                                                    data_upload(
+                                                        'thana-kormosuci-bastobayon'
+                                                    )
+                                                "
+                                                :type="type"
+                                                class="bg-input w-100 text-center"
+                                            />
+
                                             <popup
                                                 :ward_id="
                                                     report_header?.ward_info?.id
@@ -8073,7 +8107,10 @@
                     </table>
                 </div>
             </div>
-            <div class="do_not_print d-flex flex-wrap gap-2 mb-2">
+            <div
+                class="do_not_print d-flex flex-wrap gap-2 mb-2"
+                id="do_not_print"
+            >
                 <popup-note
                     :label="'ইউনিটে মাসিক সাধারণ সভা মোট সংখ্যা'"
                     :ward_id="report_header?.ward_info?.id"
@@ -18328,180 +18365,186 @@
                                     মোট যোগদানকৃত ছাত্র-ছাত্রী সংখ্যা
                                 </td>
                                 <td>
-                                    <div class="parent_popup">
-                                        <input
-                                            name="Joined_student_man_member"
-                                            :value="
-                                                formatBangla(
-                                                    report_sum_data
-                                                        ?.thana_songothon6_bidayi_students_connects
-                                                        ?.Joined_student_man_member
-                                                )
-                                            "
-                                            @change="
-                                                data_upload(
-                                                    'thana-songothon6-bidayi-students-connect'
-                                                )
-                                            "
-                                            :type="type"
-                                            class="bg-input fixed-input-30 text-center"
-                                        />
-                                        <popup
-                                            :ward_id="
-                                                report_header?.ward_info?.id
-                                            "
-                                            :table_name="'ward_songothon6_bidayi_students_connects'"
-                                            :field_title="'Joined_student_man_member'"
-                                            :month="month"
-                                        >
-                                        </popup>
-                                    </div>
-                                    /
-                                    <div class="parent_popup">
-                                        <input
-                                            name="Joined_student_women_member"
-                                            :value="
-                                                formatBangla(
-                                                    report_sum_data
-                                                        ?.thana_songothon6_bidayi_students_connects
-                                                        ?.Joined_student_women_member
-                                                )
-                                            "
-                                            @change="
-                                                data_upload(
-                                                    'thana-songothon6-bidayi-students-connect'
-                                                )
-                                            "
-                                            :type="type"
-                                            class="bg-input fixed-input-30 text-center"
-                                        />
-                                        <popup
-                                            :ward_id="
-                                                report_header?.ward_info?.id
-                                            "
-                                            :table_name="'ward_songothon6_bidayi_students_connects'"
-                                            :field_title="'Joined_student_women_member'"
-                                            :month="month"
-                                        >
-                                        </popup>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="parent_popup">
-                                        <input
-                                            name="Joined_student_man_associate"
-                                            :value="
-                                                formatBangla(
-                                                    report_sum_data
-                                                        ?.thana_songothon6_bidayi_students_connects
-                                                        ?.Joined_student_man_associate
-                                                )
-                                            "
-                                            @change="
-                                                data_upload(
-                                                    'thana-songothon6-bidayi-students-connect'
-                                                )
-                                            "
-                                            :type="type"
-                                            class="bg-input fixed-input-30 text-center"
-                                        />
-                                        <popup
-                                            :ward_id="
-                                                report_header?.ward_info?.id
-                                            "
-                                            :table_name="'ward_songothon6_bidayi_students_connects'"
-                                            :field_title="'Joined_student_man_associate'"
-                                            :month="month"
-                                        >
-                                        </popup>
-                                    </div>
-                                    /
-                                    <div class="parent_popup">
-                                        <input
-                                            name="Joined_student_women_associate"
-                                            :value="
-                                                formatBangla(
-                                                    report_sum_data
-                                                        ?.thana_songothon6_bidayi_students_connects
-                                                        ?.Joined_student_women_associate
-                                                )
-                                            "
-                                            @change="
-                                                data_upload(
-                                                    'thana-songothon6-bidayi-students-connect'
-                                                )
-                                            "
-                                            :type="type"
-                                            class="bg-input fixed-input-30 text-center"
-                                        />
-                                        <popup
-                                            :ward_id="
-                                                report_header?.ward_info?.id
-                                            "
-                                            :table_name="'ward_songothon6_bidayi_students_connects'"
-                                            :field_title="'Joined_student_women_associate'"
-                                            :month="month"
-                                        >
-                                        </popup>
+                                    <div class="d-flex justify-content-evenly">
+                                        <div class="parent_popup">
+                                            <input
+                                                name="Joined_student_man_member"
+                                                :value="
+                                                    formatBangla(
+                                                        report_sum_data
+                                                            ?.thana_songothon6_bidayi_students_connects
+                                                            ?.Joined_student_man_member
+                                                    )
+                                                "
+                                                @change="
+                                                    data_upload(
+                                                        'thana-songothon6-bidayi-students-connect'
+                                                    )
+                                                "
+                                                :type="type"
+                                                class="bg-input fixed-input-30 text-center"
+                                            />
+                                            <popup
+                                                :ward_id="
+                                                    report_header?.ward_info?.id
+                                                "
+                                                :table_name="'ward_songothon6_bidayi_students_connects'"
+                                                :field_title="'Joined_student_man_member'"
+                                                :month="month"
+                                            >
+                                            </popup>
+                                        </div>
+                                        /
+                                        <div class="parent_popup">
+                                            <input
+                                                name="Joined_student_women_member"
+                                                :value="
+                                                    formatBangla(
+                                                        report_sum_data
+                                                            ?.thana_songothon6_bidayi_students_connects
+                                                            ?.Joined_student_women_member
+                                                    )
+                                                "
+                                                @change="
+                                                    data_upload(
+                                                        'thana-songothon6-bidayi-students-connect'
+                                                    )
+                                                "
+                                                :type="type"
+                                                class="bg-input fixed-input-30 text-center"
+                                            />
+                                            <popup
+                                                :ward_id="
+                                                    report_header?.ward_info?.id
+                                                "
+                                                :table_name="'ward_songothon6_bidayi_students_connects'"
+                                                :field_title="'Joined_student_women_member'"
+                                                :month="month"
+                                            >
+                                            </popup>
+                                        </div>
                                     </div>
                                 </td>
                                 <td>
-                                    <div class="parent_popup">
-                                        <input
-                                            name="Joined_student_man_worker"
-                                            :value="
-                                                formatBangla(
-                                                    report_sum_data
-                                                        ?.thana_songothon6_bidayi_students_connects
-                                                        ?.Joined_student_man_worker
-                                                )
-                                            "
-                                            @change="
-                                                data_upload(
-                                                    'thana-songothon6-bidayi-students-connect'
-                                                )
-                                            "
-                                            :type="type"
-                                            class="bg-input fixed-input-30 text-center"
-                                        />
-                                        <popup
-                                            :ward_id="
-                                                report_header?.ward_info?.id
-                                            "
-                                            :table_name="'ward_songothon6_bidayi_students_connects'"
-                                            :field_title="'Joined_student_man_worker'"
-                                            :month="month"
-                                        >
-                                        </popup>
+                                    <div class="d-flex justify-content-evenly">
+                                        <div class="parent_popup">
+                                            <input
+                                                name="Joined_student_man_associate"
+                                                :value="
+                                                    formatBangla(
+                                                        report_sum_data
+                                                            ?.thana_songothon6_bidayi_students_connects
+                                                            ?.Joined_student_man_associate
+                                                    )
+                                                "
+                                                @change="
+                                                    data_upload(
+                                                        'thana-songothon6-bidayi-students-connect'
+                                                    )
+                                                "
+                                                :type="type"
+                                                class="bg-input fixed-input-30 text-center"
+                                            />
+                                            <popup
+                                                :ward_id="
+                                                    report_header?.ward_info?.id
+                                                "
+                                                :table_name="'ward_songothon6_bidayi_students_connects'"
+                                                :field_title="'Joined_student_man_associate'"
+                                                :month="month"
+                                            >
+                                            </popup>
+                                        </div>
+                                        /
+                                        <div class="parent_popup">
+                                            <input
+                                                name="Joined_student_women_associate"
+                                                :value="
+                                                    formatBangla(
+                                                        report_sum_data
+                                                            ?.thana_songothon6_bidayi_students_connects
+                                                            ?.Joined_student_women_associate
+                                                    )
+                                                "
+                                                @change="
+                                                    data_upload(
+                                                        'thana-songothon6-bidayi-students-connect'
+                                                    )
+                                                "
+                                                :type="type"
+                                                class="bg-input fixed-input-30 text-center"
+                                            />
+                                            <popup
+                                                :ward_id="
+                                                    report_header?.ward_info?.id
+                                                "
+                                                :table_name="'ward_songothon6_bidayi_students_connects'"
+                                                :field_title="'Joined_student_women_associate'"
+                                                :month="month"
+                                            >
+                                            </popup>
+                                        </div>
                                     </div>
-                                    /
-                                    <div class="parent_popup">
-                                        <input
-                                            name="Joined_student_women_worker"
-                                            :value="
-                                                formatBangla(
-                                                    report_sum_data
-                                                        ?.thana_songothon6_bidayi_students_connects
-                                                        ?.Joined_student_women_worker
-                                                )
-                                            "
-                                            @change="
-                                                data_upload(
-                                                    'thana-songothon6-bidayi-students-connect'
-                                                )
-                                            "
-                                            :type="type"
-                                            class="bg-input fixed-input-30 text-center"
-                                        />
-                                        <popup
-                                            :ward_id="
-                                                report_header?.ward_info?.id
-                                            "
-                                            :table_name="'songothon5_dawat_and_paribarik_units'"
-                                            :field_title="'Joined_student_women_worker'"
-                                            :month="month"
-                                        >
-                                        </popup>
+                                </td>
+                                <td>
+                                    <div class="d-flex justify-content-evenly">
+                                        <div class="parent_popup">
+                                            <input
+                                                name="Joined_student_man_worker"
+                                                :value="
+                                                    formatBangla(
+                                                        report_sum_data
+                                                            ?.thana_songothon6_bidayi_students_connects
+                                                            ?.Joined_student_man_worker
+                                                    )
+                                                "
+                                                @change="
+                                                    data_upload(
+                                                        'thana-songothon6-bidayi-students-connect'
+                                                    )
+                                                "
+                                                :type="type"
+                                                class="bg-input fixed-input-30 text-center"
+                                            />
+                                            <popup
+                                                :ward_id="
+                                                    report_header?.ward_info?.id
+                                                "
+                                                :table_name="'ward_songothon6_bidayi_students_connects'"
+                                                :field_title="'Joined_student_man_worker'"
+                                                :month="month"
+                                            >
+                                            </popup>
+                                        </div>
+                                        /
+                                        <div class="parent_popup">
+                                            <input
+                                                name="Joined_student_women_worker"
+                                                :value="
+                                                    formatBangla(
+                                                        report_sum_data
+                                                            ?.thana_songothon6_bidayi_students_connects
+                                                            ?.Joined_student_women_worker
+                                                    )
+                                                "
+                                                @change="
+                                                    data_upload(
+                                                        'thana-songothon6-bidayi-students-connect'
+                                                    )
+                                                "
+                                                :type="type"
+                                                class="bg-input fixed-input-30 text-center"
+                                            />
+                                            <popup
+                                                :ward_id="
+                                                    report_header?.ward_info?.id
+                                                "
+                                                :table_name="'songothon5_dawat_and_paribarik_units'"
+                                                :field_title="'Joined_student_women_worker'"
+                                                :month="month"
+                                            >
+                                            </popup>
+                                        </div>
                                     </div>
                                 </td>
                             </tr>
@@ -19044,121 +19087,125 @@
                             <tr>
                                 <td class="px-2">সহযোগী সদস্য/সুধী</td>
                                 <td>
-                                    <div class="parent_popup">
-                                        <input
-                                            name="associate_member_total"
-                                            :value="
-                                                formatBangla(
-                                                    report_sum_data
-                                                        ?.thana_songothon10_iyanot_data
-                                                        ?.associate_member_total
-                                                )
-                                            "
-                                            @change="
-                                                data_upload(
-                                                    'thana-songothon10-iyanot-data'
-                                                )
-                                            "
-                                            :type="type"
-                                            class="bg-input fixed-input-30 text-center"
-                                        />
-                                        <popup
-                                            :ward_id="
-                                                report_header?.ward_info?.id
-                                            "
-                                            :table_name="'ward_songothon8_iyanot_data'"
-                                            :field_title="'associate_member_total'"
-                                            :month="month"
-                                        >
-                                        </popup>
-                                    </div>
-                                    /
-                                    <div class="parent_popup">
-                                        <input
-                                            name="sudhi_total"
-                                            :value="
-                                                formatBangla(
-                                                    report_sum_data
-                                                        ?.thana_songothon10_iyanot_data
-                                                        ?.sudhi_total
-                                                )
-                                            "
-                                            @change="
-                                                data_upload(
-                                                    'thana-songothon10-iyanot-data'
-                                                )
-                                            "
-                                            :type="type"
-                                            class="bg-input fixed-input-30 text-center"
-                                        />
-                                        <popup
-                                            :ward_id="
-                                                report_header?.ward_info?.id
-                                            "
-                                            :table_name="'ward_songothon8_iyanot_data'"
-                                            :field_title="'sudhi_total'"
-                                            :month="month"
-                                        >
-                                        </popup>
+                                    <div class="d-flex justify-content-evenly">
+                                        <div class="parent_popup">
+                                            <input
+                                                name="associate_member_total"
+                                                :value="
+                                                    formatBangla(
+                                                        report_sum_data
+                                                            ?.thana_songothon10_iyanot_data
+                                                            ?.associate_member_total
+                                                    )
+                                                "
+                                                @change="
+                                                    data_upload(
+                                                        'thana-songothon10-iyanot-data'
+                                                    )
+                                                "
+                                                :type="type"
+                                                class="bg-input fixed-input-30 text-center"
+                                            />
+                                            <popup
+                                                :ward_id="
+                                                    report_header?.ward_info?.id
+                                                "
+                                                :table_name="'ward_songothon8_iyanot_data'"
+                                                :field_title="'associate_member_total'"
+                                                :month="month"
+                                            >
+                                            </popup>
+                                        </div>
+                                        /
+                                        <div class="parent_popup">
+                                            <input
+                                                name="sudhi_total"
+                                                :value="
+                                                    formatBangla(
+                                                        report_sum_data
+                                                            ?.thana_songothon10_iyanot_data
+                                                            ?.sudhi_total
+                                                    )
+                                                "
+                                                @change="
+                                                    data_upload(
+                                                        'thana-songothon10-iyanot-data'
+                                                    )
+                                                "
+                                                :type="type"
+                                                class="bg-input fixed-input-30 text-center"
+                                            />
+                                            <popup
+                                                :ward_id="
+                                                    report_header?.ward_info?.id
+                                                "
+                                                :table_name="'ward_songothon8_iyanot_data'"
+                                                :field_title="'sudhi_total'"
+                                                :month="month"
+                                            >
+                                            </popup>
+                                        </div>
                                     </div>
                                 </td>
                                 <td>
-                                    <div class="parent_popup">
-                                        <input
-                                            name="associate_member_total_iyanot_amounts"
-                                            :value="
-                                                formatBangla(
-                                                    report_sum_data
-                                                        ?.thana_songothon10_iyanot_data
-                                                        ?.associate_member_total_iyanot_amounts
-                                                )
-                                            "
-                                            @change="
-                                                data_upload(
-                                                    'thana-songothon10-iyanot-data'
-                                                )
-                                            "
-                                            :type="type"
-                                            class="bg-input fixed-input-30 text-center"
-                                        />
-                                        <popup
-                                            :ward_id="
-                                                report_header?.ward_info?.id
-                                            "
-                                            :table_name="'ward_songothon8_iyanot_data'"
-                                            :field_title="'associate_member_total_iyanot_amounts'"
-                                            :month="month"
-                                        >
-                                        </popup>
-                                    </div>
-                                    /
-                                    <div class="parent_popup">
-                                        <input
-                                            name="sudi_total_iyanot_amounts"
-                                            :value="
-                                                formatBangla(
-                                                    report_sum_data
-                                                        ?.thana_songothon10_iyanot_data
-                                                        ?.sudi_total_iyanot_amounts
-                                                )
-                                            "
-                                            @change="
-                                                data_upload(
-                                                    'thana-songothon10-iyanot-data'
-                                                )
-                                            "
-                                            :type="type"
-                                            class="bg-input fixed-input-30 text-center"
-                                        />
-                                        <popup
-                                            :ward_id="
-                                                report_header?.ward_info?.id
-                                            "
-                                            :table_name="'ward_songothon8_iyanot_data'"
-                                            :field_title="'sudi_total_iyanot_amounts'"
-                                            :month="month"
-                                        >
-                                        </popup>
+                                    <div class="d-flex justify-content-evenly">
+                                        <div class="parent_popup">
+                                            <input
+                                                name="associate_member_total_iyanot_amounts"
+                                                :value="
+                                                    formatBangla(
+                                                        report_sum_data
+                                                            ?.thana_songothon10_iyanot_data
+                                                            ?.associate_member_total_iyanot_amounts
+                                                    )
+                                                "
+                                                @change="
+                                                    data_upload(
+                                                        'thana-songothon10-iyanot-data'
+                                                    )
+                                                "
+                                                :type="type"
+                                                class="bg-input fixed-input-30 text-center"
+                                            />
+                                            <popup
+                                                :ward_id="
+                                                    report_header?.ward_info?.id
+                                                "
+                                                :table_name="'ward_songothon8_iyanot_data'"
+                                                :field_title="'associate_member_total_iyanot_amounts'"
+                                                :month="month"
+                                            >
+                                            </popup>
+                                        </div>
+                                        /
+                                        <div class="parent_popup">
+                                            <input
+                                                name="sudi_total_iyanot_amounts"
+                                                :value="
+                                                    formatBangla(
+                                                        report_sum_data
+                                                            ?.thana_songothon10_iyanot_data
+                                                            ?.sudi_total_iyanot_amounts
+                                                    )
+                                                "
+                                                @change="
+                                                    data_upload(
+                                                        'thana-songothon10-iyanot-data'
+                                                    )
+                                                "
+                                                :type="type"
+                                                class="bg-input fixed-input-30 text-center"
+                                            />
+                                            <popup
+                                                :ward_id="
+                                                    report_header?.ward_info?.id
+                                                "
+                                                :table_name="'ward_songothon8_iyanot_data'"
+                                                :field_title="'sudi_total_iyanot_amounts'"
+                                                :month="month"
+                                            >
+                                            </popup>
+                                        </div>
                                     </div>
                                 </td>
                             </tr>
@@ -19194,80 +19241,88 @@
                                     (উপজেলা-থানা/পৌরসভা/ইউনিয়ন)
                                 </td>
                                 <td>
-                                    <input
-                                        name="upojela_mozlishe_sura_boithok_man_total"
-                                        :value="
-                                            formatBangla(
-                                                report_sum_data
-                                                    ?.thana_songothon11_sangothonik_boithoks
-                                                    ?.upojela_mozlishe_sura_boithok_man_total
-                                            )
-                                        "
-                                        @change="
-                                            data_upload(
-                                                'thana-songothon11-sangothonik-boithoks'
-                                            )
-                                        "
-                                        :type="type"
-                                        class="bg-input fixed-input-20 text-center"
-                                    />
-                                    <popup
-                                        :ward_id="report_header?.ward_info?.id"
-                                        :table_name="'thana_songothon11_sangothonik_boithoks'"
-                                        :field_title="'upojela_mozlishe_sura_boithok_man_total'"
-                                        :month="month"
-                                    >
-                                    </popup>
-                                    /
-                                    <input
-                                        name="pourosova_mozlishe_sura_boithok_man_total"
-                                        :value="
-                                            formatBangla(
-                                                report_sum_data
-                                                    ?.thana_songothon11_sangothonik_boithoks
-                                                    ?.pourosova_mozlishe_sura_boithok_man_total
-                                            )
-                                        "
-                                        @change="
-                                            data_upload(
-                                                'thana-songothon11-sangothonik-boithoks'
-                                            )
-                                        "
-                                        :type="type"
-                                        class="bg-input fixed-input-20 text-center"
-                                    />
-                                    <popup
-                                        :ward_id="report_header?.ward_info?.id"
-                                        :table_name="'thana_songothon11_sangothonik_boithoks'"
-                                        :field_title="'pourosova_mozlishe_sura_boithok_man_total'"
-                                        :month="month"
-                                    >
-                                    </popup>
-                                    /
-                                    <input
-                                        name="union_mozlishe_sura_boithok_man_total"
-                                        :value="
-                                            formatBangla(
-                                                report_sum_data
-                                                    ?.thana_songothon11_sangothonik_boithoks
-                                                    ?.union_mozlishe_sura_boithok_man_total
-                                            )
-                                        "
-                                        @change="
-                                            data_upload(
-                                                'thana-songothon11-sangothonik-boithoks'
-                                            )
-                                        "
-                                        :type="type"
-                                        class="bg-input fixed-input-20 text-center"
-                                    />
-                                    <popup
-                                        :ward_id="report_header?.ward_info?.id"
-                                        :table_name="'thana_songothon11_sangothonik_boithoks'"
-                                        :field_title="'union_mozlishe_sura_boithok_man_total'"
-                                        :month="month"
-                                    >
-                                    </popup>
+                                    <div class="d-flex justify-content-evenly">
+                                        <input
+                                            name="upojela_mozlishe_sura_boithok_man_total"
+                                            :value="
+                                                formatBangla(
+                                                    report_sum_data
+                                                        ?.thana_songothon11_sangothonik_boithoks
+                                                        ?.upojela_mozlishe_sura_boithok_man_total
+                                                )
+                                            "
+                                            @change="
+                                                data_upload(
+                                                    'thana-songothon11-sangothonik-boithoks'
+                                                )
+                                            "
+                                            :type="type"
+                                            class="bg-input fixed-input-20 text-center"
+                                        />
+                                        <popup
+                                            :ward_id="
+                                                report_header?.ward_info?.id
+                                            "
+                                            :table_name="'thana_songothon11_sangothonik_boithoks'"
+                                            :field_title="'upojela_mozlishe_sura_boithok_man_total'"
+                                            :month="month"
+                                        >
+                                        </popup>
+                                        /
+                                        <input
+                                            name="pourosova_mozlishe_sura_boithok_man_total"
+                                            :value="
+                                                formatBangla(
+                                                    report_sum_data
+                                                        ?.thana_songothon11_sangothonik_boithoks
+                                                        ?.pourosova_mozlishe_sura_boithok_man_total
+                                                )
+                                            "
+                                            @change="
+                                                data_upload(
+                                                    'thana-songothon11-sangothonik-boithoks'
+                                                )
+                                            "
+                                            :type="type"
+                                            class="bg-input fixed-input-20 text-center"
+                                        />
+                                        <popup
+                                            :ward_id="
+                                                report_header?.ward_info?.id
+                                            "
+                                            :table_name="'thana_songothon11_sangothonik_boithoks'"
+                                            :field_title="'pourosova_mozlishe_sura_boithok_man_total'"
+                                            :month="month"
+                                        >
+                                        </popup>
+                                        /
+                                        <input
+                                            name="union_mozlishe_sura_boithok_man_total"
+                                            :value="
+                                                formatBangla(
+                                                    report_sum_data
+                                                        ?.thana_songothon11_sangothonik_boithoks
+                                                        ?.union_mozlishe_sura_boithok_man_total
+                                                )
+                                            "
+                                            @change="
+                                                data_upload(
+                                                    'thana-songothon11-sangothonik-boithoks'
+                                                )
+                                            "
+                                            :type="type"
+                                            class="bg-input fixed-input-20 text-center"
+                                        />
+                                        <popup
+                                            :ward_id="
+                                                report_header?.ward_info?.id
+                                            "
+                                            :table_name="'thana_songothon11_sangothonik_boithoks'"
+                                            :field_title="'union_mozlishe_sura_boithok_man_total'"
+                                            :month="month"
+                                        >
+                                        </popup>
+                                    </div>
                                 </td>
                                 <td>
                                     <input
@@ -33212,77 +33267,37 @@
                             <td class="p-0 vertical_align_baseline" colspan="2">
                                 <table class="border_none">
                                     <tbody>
-                                        <tr>
+                                        <tr
+                                            v-for="(
+                                                bm_cat, index
+                                            ) in bm_income_categories"
+                                            :key="index"
+                                        >
                                             <td
                                                 class="text-start px-2 w-50 border_bottom"
                                             >
-                                                প্রাপ্ত নিছাব
+                                                {{ bm_cat.title }}
                                             </td>
-                                            <td class="border_left_bottom"></td>
-                                        </tr>
-                                        <tr>
-                                            <td
-                                                class="text-start px-2 w-50 border_bottom"
-                                            >
-                                                সরাসরি ইয়ানত
+                                            <td class="border_left_bottom">
+                                                <input
+                                                    name="bm_entry"
+                                                    :value="
+                                                        formatBangla(
+                                                            bm_categoty_amount(
+                                                                bm_cat.id
+                                                            )
+                                                        )
+                                                    "
+                                                    @change="
+                                                        income_store(
+                                                            bm_cat.id,
+                                                            $event.target.value
+                                                        )
+                                                    "
+                                                    type="text"
+                                                    class="bg-input w-100 text-center"
+                                                />
                                             </td>
-                                            <td class="border_left_bottom"></td>
-                                        </tr>
-                                        <tr>
-                                            <td
-                                                class="text-start px-2 w-50 border_bottom"
-                                            >
-                                                এককালীন
-                                            </td>
-                                            <td class="border_left_bottom"></td>
-                                        </tr>
-                                        <tr>
-                                            <td
-                                                class="text-start px-2 w-50 border_bottom"
-                                            >
-                                                নির্বাচনী ফান্ড
-                                            </td>
-                                            <td class="border_left_bottom"></td>
-                                        </tr>
-                                        <tr>
-                                            <td
-                                                class="text-start px-2 w-50 border_bottom"
-                                            >
-                                                শহীদ ফান্ড
-                                            </td>
-                                            <td class="border_left_bottom"></td>
-                                        </tr>
-                                        <tr>
-                                            <td
-                                                class="text-start px-2 w-50 border_bottom"
-                                            >
-                                                কল্যাণ তহবিল
-                                            </td>
-                                            <td class="border_left_bottom"></td>
-                                        </tr>
-                                        <tr>
-                                            <td
-                                                class="text-start px-2 w-50 border_bottom"
-                                            >
-                                                সমাজকল্যাণ ও সমাজসেবা
-                                            </td>
-                                            <td class="border_left_bottom"></td>
-                                        </tr>
-                                        <tr>
-                                            <td
-                                                class="text-start px-2 w-50 border_bottom"
-                                            >
-                                                প্রকাশনা
-                                            </td>
-                                            <td class="border_left_bottom"></td>
-                                        </tr>
-                                        <tr>
-                                            <td
-                                                class="text-start px-2 w-50 border_bottom"
-                                            >
-                                                বই বিক্রি
-                                            </td>
-                                            <td class="border_left_bottom"></td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -33290,77 +33305,37 @@
                             <td class="p-0 vertical_align_baseline" colspan="2">
                                 <table class="border_none">
                                     <tbody>
-                                        <tr>
+                                        <tr
+                                            v-for="(
+                                                expense_cat, index
+                                            ) in bm_expense_categories"
+                                            :key="index"
+                                        >
                                             <td
                                                 class="text-start px-2 w-50 border_bottom"
                                             >
-                                                নিছাব পরিশোধ
+                                                {{ expense_cat.title }}
                                             </td>
-                                            <td class="border_left_bottom"></td>
-                                        </tr>
-                                        <tr>
-                                            <td
-                                                class="text-start px-2 w-50 border_bottom"
-                                            >
-                                                এককালীন
+                                            <td class="border_left_bottom">
+                                                <input
+                                                    name="bm_entry"
+                                                    :value="
+                                                        formatBangla(
+                                                            expense_categoty_amount(
+                                                                expense_cat.id
+                                                            )
+                                                        )
+                                                    "
+                                                    @change="
+                                                        expense_store(
+                                                            expense_cat.id,
+                                                            $event.target.value
+                                                        )
+                                                    "
+                                                    type="text"
+                                                    class="bg-input w-100 text-center"
+                                                />
                                             </td>
-                                            <td class="border_left_bottom"></td>
-                                        </tr>
-                                        <tr>
-                                            <td
-                                                class="text-start px-2 w-50 border_bottom"
-                                            >
-                                                স্থানীয় খরচ
-                                            </td>
-                                            <td class="border_left_bottom"></td>
-                                        </tr>
-                                        <tr>
-                                            <td
-                                                class="text-start px-2 w-50 border_bottom"
-                                            >
-                                                নির্বাচনী ফান্ড
-                                            </td>
-                                            <td class="border_left_bottom"></td>
-                                        </tr>
-                                        <tr>
-                                            <td
-                                                class="text-start px-2 w-50 border_bottom"
-                                            >
-                                                শহীদ ফান্ড
-                                            </td>
-                                            <td class="border_left_bottom"></td>
-                                        </tr>
-                                        <tr>
-                                            <td
-                                                class="text-start px-2 w-50 border_bottom"
-                                            >
-                                                কল্যাণ তহবিল
-                                            </td>
-                                            <td class="border_left_bottom"></td>
-                                        </tr>
-                                        <tr>
-                                            <td
-                                                class="text-start px-2 w-50 border_bottom"
-                                            >
-                                                সমাজকল্যাণ ও সমাজসেবা
-                                            </td>
-                                            <td class="border_left_bottom"></td>
-                                        </tr>
-                                        <tr>
-                                            <td
-                                                class="text-start px-2 w-50 border_bottom"
-                                            >
-                                                দাওয়াত
-                                            </td>
-                                            <td class="border_left_bottom"></td>
-                                        </tr>
-                                        <tr>
-                                            <td
-                                                class="text-start px-2 w-50 border_bottom"
-                                            >
-                                                অন্যান্য
-                                            </td>
-                                            <td class="border_left_bottom"></td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -33368,21 +33343,45 @@
                         </tr>
                         <tr>
                             <td class="text-end px-2">মোট</td>
-                            <td></td>
+                            <td>
+                                {{ formatBangla(parseInt(total_income) ?? "") }}
+                            </td>
                             <td class="text-end px-2">মোট</td>
-                            <td></td>
+                            <td>
+                                {{
+                                    formatBangla(parseInt(total_expense) ?? "")
+                                }}
+                            </td>
                         </tr>
                         <tr>
                             <td class="text-end px-2">গত মাসের উদ্বৃত্ত</td>
-                            <td></td>
+                            <td>
+                                {{
+                                    formatBangla(parseInt(total_previous) ?? "")
+                                }}
+                            </td>
                             <td class="text-end px-2">এ মাসের উদ্বৃত্ত</td>
-                            <td></td>
+                            <td>
+                                {{
+                                    formatBangla(
+                                        parseInt(total_current_income) ?? ""
+                                    )
+                                }}
+                            </td>
                         </tr>
                         <tr>
                             <td class="text-end px-2">সর্বমোট</td>
-                            <td></td>
+                            <td>
+                                {{
+                                    formatBangla(
+                                        parseInt(total_current_income) ?? ""
+                                    )
+                                }}
+                            </td>
                             <td class="text-end px-2">সর্বমোট</td>
-                            <td></td>
+                            <td>
+                                {{ formatBangla(parseInt(in_total) ?? "") }}
+                            </td>
                         </tr>
                     </tbody>
                 </table>
@@ -33525,10 +33524,10 @@ export default {
 
     created() {
         this.uploaded_data();
-        // this.income_category()
-        // this.expense_category()
-        // this.bm_category_wise()/
-        // this.bm_expense_category_wise()
+        this.income_category();
+        this.expense_category();
+        this.bm_category_wise();
+        this.bm_expense_category_wise();
         this.report_status();
     },
     watch: {
@@ -33584,6 +33583,8 @@ export default {
                     (this.previous_present = res.data.data.previous_present),
                     (this.income_report = res.data.data.income_report),
                     (this.expense_report = res.data.data.expense_report);
+                this.total_income = res.data.data.income_report?.total_amount;
+                this.total_expense = res.data.data.expense_report?.total_amount;
 
                 (this.total_previous = res.data.total_previous),
                     (this.total_current_income = res.data.total_current_income),
@@ -33996,29 +33997,51 @@ export default {
 
         //     return " ";
         // },
-        // expense_category: async function () {
-        //     let res = await axios.get('/ward-bm-expense-category/all')
-        //     if (res.data.status == 'success') {
-        //         this.bm_expense_categories = res?.data?.data?.data
-        //     }
+        bm_expense_category_wise: async function () {
+            const month = this.$route.params.month;
 
-        // },
-        // income_category: async function () {
-        //     let res = await axios.get('/ward-bm-income-category/all')
-        //     if (res) {
-        //         this.bm_income_categories = res.data?.data
-        //     }
+            let res = await axios.get("/thana/expense-category-wise", {
+                params: {
+                    month: month,
+                },
+            });
+            if (res) {
+                this.expense_cat_wise = res.data?.data;
+            }
+        },
+        bm_category_wise: async function () {
+            const month = this.$route.params.month;
 
-        // },
-        income_store: function (ward_bm_income_category_id, amount) {
+            let res = await axios.get("/thana/income-category-wise", {
+                params: {
+                    month: month,
+                },
+            });
+            if (res) {
+                this.bm_cat_wise = res.data?.data;
+            }
+        },
+        expense_category: async function () {
+            let res = await axios.get("/thana-bm-expense-category/all");
+            if (res.data.status == "success") {
+                this.bm_expense_categories = res?.data?.data?.data;
+            }
+        },
+        income_category: async function () {
+            let res = await axios.get("/thana-bm-income-category/all");
+            if (res) {
+                this.bm_income_categories = res.data?.data;
+            }
+        },
+        income_store: function (thana_bm_income_category_id, amount) {
             const month = this.$route.params.month;
             const formData = {
-                ward_bm_income_category_id: ward_bm_income_category_id,
+                thana_bm_income_category_id: thana_bm_income_category_id,
                 amount: amount,
                 month: month,
             };
             axios
-                .post("/ward-bm-income/store", formData)
+                .post("/thana-bm-income/store", formData)
                 .then(function (response) {
                     window.toaster(
                         "New BM entry Created successfuly",
@@ -34030,15 +34053,61 @@ export default {
                 });
         },
 
-        expense_store: function (ward_bm_expense_category_id, amount) {
+        bm_categoty_amount: function (bm_cat_id) {
+            // console.log("log", bm_cat_id, this.bm_cat_wise);
+            if (this.bm_cat_wise != null) {
+                // console.log("inside",bm_cat_id,this.bm_cat_wise )
+                const element = this.bm_cat_wise.find((el) => {
+                    if (
+                        el.thana_bm_income_category &&
+                        el.thana_bm_income_category.id == bm_cat_id
+                    ) {
+                        return el;
+                    }
+                });
+                // console.log("inside element",element)
+                if (element) {
+                    return element.amount;
+                } else {
+                    // console.log("element not found")
+                }
+            } else {
+                return "";
+            }
+        },
+        expense_categoty_amount: function (expense_cat_id) {
+            // console.log("expense_categoty_amount",expense_cat_id);
+            // console.log("this.expense_cat_wise",this.expense_cat_wise);
+
+            if (this.expense_cat_wise != null) {
+                // console.log("expanxe inside",this.expense_cat_wise);
+                const element = this.expense_cat_wise.find((element) => {
+                    if (
+                        element.thana_bm_expense_category &&
+                        element.thana_bm_expense_category.id == expense_cat_id
+                    ) {
+                        return element;
+                    }
+                });
+                if (element) {
+                    return element.amount;
+                } else {
+                    // console.log("element not found")
+                }
+            } else {
+                return "";
+            }
+        },
+
+        expense_store: function (thana_bm_expense_category_id, amount) {
             const month = this.$route.params.month;
             const formData = {
-                ward_bm_expense_category_id: ward_bm_expense_category_id,
+                thana_bm_expense_category_id: thana_bm_expense_category_id,
                 amount: amount,
                 month: month,
             };
             axios
-                .post("/ward-bm-expense/store", formData)
+                .post("/thana-bm-expense/store", formData)
                 .then(function (response) {
                     window.toaster(
                         "New Expense entry Created successfuly",
@@ -34050,14 +34119,31 @@ export default {
                 });
         },
         print_report: function () {
-            const month = this.$route.params.month;
-            const user_id = this.$route.params.user_id;
-            const url = `/ward/report?user_id=${user_id}&month=${month}&print=true`;
-            window.location.href = url;
+            // Set opacity to 0 for all elements with the 'i_icon' class
+            document
+                .querySelectorAll(".i_icon")
+                .forEach((element) => (element.style.opacity = "0"));
 
-            setTimeout(() => {
-                window.print(); // Trigger the print dialog
-            }, 200);
+            // Hide elements with the 'do_not_print' class and apply additional styles
+            document.querySelectorAll(".do_not_print").forEach((element) => {
+                element.style.display = "none";
+                element.setAttribute("style", "display: none !important;");
+            });
+
+            // Hide the print preview element
+            const printPreview = document.querySelector(".print_preview");
+            if (printPreview) printPreview.style.display = "none";
+
+            // Trigger the print dialog
+            window.print();
+            // const month = this.$route.params.month;
+            // const user_id = this.$route.params.user_id;
+            // const url = `/thana/report?user_id=${user_id}&month=${month}&print=true`;
+            // window.location.href = url;
+
+            // setTimeout(() => {
+            //     window.print(); // Trigger the print dialog
+            // }, 200);
         },
 
         implementation_rate: function (target, achieved) {
