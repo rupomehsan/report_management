@@ -39,12 +39,12 @@ class ThanaController extends Controller
                 'errors' => $validator->errors(),
             ], 422);
         }
-        $ward_info = (object) auth()->user()->org_ward_user;
+        $thana_info = (object) auth()->user()->org_thana_user;
         $month = Carbon::parse(request()->month);
 
         $query = ThanaBmExpense::query();
-        $filter = $query->whereYear('date', $month->clone()->year)->whereMonth('date', $month->clone()->month)->where('ward_id', $ward_info->ward_id);
-        $data = $filter->with('ward_bm_expense_category')->get();
+        $filter = $query->whereYear('date', $month->clone()->year)->whereMonth('date', $month->clone()->month)->where('thana_id', $thana_info->thana_id);
+        $data = $filter->with('thana_bm_expense_category')->get();
 
         return response()->json([
             'status' => 'success',
@@ -64,12 +64,13 @@ class ThanaController extends Controller
                 'errors' => $validator->errors(),
             ], 422);
         }
-        $ward_info = (object) auth()->user()->org_ward_user;
+        $thana_info = (object) auth()->user()->org_thana_user;
+
         $month = Carbon::parse(request()->month);
 
-        $query = WardBmIncome::query();
-        $filter = $query->whereYear('month', $month->clone()->year)->whereMonth('month', $month->clone()->month)->where('ward_id', $ward_info->ward_id);
-        $data = $filter->with('ward_bm_income_category')->get();
+        $query = ThanaBmIncome::query();
+        $filter = $query->whereYear('month', $month->clone()->year)->whereMonth('month', $month->clone()->month)->where('thana_id', $thana_info->thana_id);
+        $data = $filter->with('thana_bm_income_category')->get();
         // dd("income_category_wise", $data->toArray());
         return response()->json([
             'status' => 'success',
@@ -402,111 +403,131 @@ class ThanaController extends Controller
 
     public function report_upload_monthly()
     {
-        $validator = Validator::make(request()->all(), [
-            'month' => ['required', 'date'],
-        ]);
+        try {
+            $validator = Validator::make(request()->all(), [
+                'month' => ['required', 'date'],
+            ]);
 
-        if ($validator->fails()) {
+            if ($validator->fails()) {
+                return response()->json([
+                    'err_message' => 'validation error',
+                    'errors' => $validator->errors(),
+                ], 422);
+            }
+
+            $thana_id = auth()->user()->org_thana_user->thana_id;
+
+
+
+            $start_month = request()->month;
+            $end_month = request()->month;
+            $org_type = 'thana';
+            $org_type_id = $thana_id;
+            $report_approved_status = ['pending', 'approved', 'rejected'];   //enum('pending','approved','rejected')
+            $is_need_sum = false;
+            $datas = $this->report_summation($start_month, $end_month, $org_type, $org_type_id, $report_approved_status, $is_need_sum);
+            // dd($datas);
+
+            // -------------------------- bm previous report ------------------------------------
+            $carbon_start_month = Carbon::parse($start_month);
+            $query = WardBmIncome::query();
+            $filter = $query->whereDate('month', '<=', $carbon_start_month->clone()->subMonth())
+                ->where('thana_id', $thana_id)
+                ->where('report_approved_status', 'approved');
+            $total_previous_income = $filter->sum('amount');
+
+            $query = WardBmExpense::query();
+            $filter = $query->whereDate('date', '<=', $carbon_start_month->clone()->subMonth())
+                ->where('thana_id', $thana_id)
+                ->where('report_approved_status', 'approved');
+            $total_previous_expense = $filter->sum('amount');
+            $total_previous =  $total_previous_income - $total_previous_expense;
+            $total_current_income =  $total_previous + $datas->income_report->total_amount;
+            $in_total =  $total_current_income - $datas->expense_report->total_amount;
+            // -------------------------- bm previous report ------------------------------------
+
+
+
             return response()->json([
-                'err_message' => 'validation error',
-                'errors' => $validator->errors(),
-            ], 422);
+                'status' => 'success',
+                'data' => $datas,
+
+                'total_previous' => $total_previous,
+                'total_current_income' => $total_current_income,
+                'in_total' => $in_total,
+            ], 200);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'status' => 'error',
+                'message' => $th->getMessage(),
+            ]);
         }
-
-        $thana_id = auth()->user()->org_thana_user->thana_id;
-
-        $start_month = request()->month;
-        $end_month = request()->month;
-        $org_type = 'thana';
-        $org_type_id = $thana_id;
-        $report_approved_status = ['pending', 'approved', 'rejected'];   //enum('pending','approved','rejected')
-        $is_need_sum = false;
-        $datas = $this->report_summation($start_month, $end_month, $org_type, $org_type_id, $report_approved_status, $is_need_sum);
-
-
-        // -------------------------- bm previous report ------------------------------------
-        $carbon_start_month = Carbon::parse($start_month);
-        $query = WardBmIncome::query();
-        $filter = $query->whereDate('month', '<=', $carbon_start_month->clone()->subMonth())
-            ->where('thana_id', $thana_id)
-            ->where('report_approved_status', 'approved');
-        $total_previous_income = $filter->sum('amount');
-
-        $query = WardBmExpense::query();
-        $filter = $query->whereDate('date', '<=', $carbon_start_month->clone()->subMonth())
-            ->where('thana_id', $thana_id)
-            ->where('report_approved_status', 'approved');
-        $total_previous_expense = $filter->sum('amount');
-        $total_previous =  $total_previous_income - $total_previous_expense;
-        $total_current_income =  $total_previous + $datas->income_report->total_amount;
-        $in_total =  $total_current_income - $datas->expense_report->total_amount;
-        // -------------------------- bm previous report ------------------------------------
-
-        return response()->json([
-            'status' => 'success',
-            'data' => $datas,
-
-            'total_previous' => $total_previous,
-            'total_current_income' => $total_current_income,
-            'in_total' => $in_total,
-        ], 200);
     }
 
     public function report_summation($start_month, $end_month, $org_type, $org_type_id, $report_approved_status = ['approved'], $is_need_sum = true, $report_info_ids = null)
     {
-        if (!is_array($org_type_id)) {
-            $report_header_instance = new ReportHeader();
-            $report_header = $report_header_instance->execute($org_type, $org_type_id);
-        } else {
-            $report_header = null;
-        }
-        // $tables = DB::select('SHOW TABLES');
 
-        // Format the result into an array of table names
-        // $table_names = array_map(function($table) {
-        //     return current((array) $table);
-        // }, $tables);
+        try {
+            if (!is_array($org_type_id)) {
+                $report_header_instance = new ReportHeader();
+                $report_header = $report_header_instance->execute($org_type, $org_type_id);
+            } else {
+                $report_header = null;
+            }
+            // $tables = DB::select('SHOW TABLES');
 
-        // Display the table names
-        // dd($table_names);
-        // ---------------------  reports all data to show  ---------------------------
-        $dateWiseReportSum = new DateWiseReportSum();
-        $report_sum_data = $dateWiseReportSum->execute($start_month, $end_month, $org_type, $org_type_id, $report_approved_status, $report_info_ids);
-        // dd($report_sum_data );
-        // ---------------------  reports all data to show  ---------------------------
+            // Format the result into an array of table names
+            // $table_names = array_map(function($table) {
+            //     return current((array) $table);
+            // }, $tables);
 
-        // ---------------------  previous and present calculation  ---------------------------
-        $calculatePreviousPresent = new CalculatePreviousPresent();
-        $previous_present = $calculatePreviousPresent->execute($start_month, $end_month, $org_type, $org_type_id);
-        // dd($previous_present);
-        // ---------------------  previous and present calculation  ---------------------------
+            // Display the table names
+            // dd($table_names);
+            // ---------------------  reports all data to show  ---------------------------
+            $dateWiseReportSum = new DateWiseReportSum();
+            $report_sum_data = $dateWiseReportSum->execute($start_month, $end_month, $org_type, $org_type_id, $report_approved_status, $report_info_ids);
+            // dd($report_sum_data);
+            // ---------------------  reports all data to show  ---------------------------
+
+            // ---------------------  previous and present calculation  ---------------------------
+            $calculatePreviousPresent = new CalculatePreviousPresent();
+            $previous_present = $calculatePreviousPresent->execute($start_month, $end_month, $org_type, $org_type_id);
+            // dd($previous_present);
+            // ---------------------  previous and present calculation  ---------------------------
 
 
-        // -------------------------- bm income report ------------------------------------
-        $bm_income_report = new BmReport();
-        $transaction_type = 'income';
-        $income_report = $bm_income_report->execute($start_month, $end_month, $org_type, $org_type_id, $transaction_type, $report_approved_status, $is_need_sum);
-        // -------------------------- bm income report ------------------------------------
+            // -------------------------- bm income report ------------------------------------
+            $bm_income_report = new BmReport();
+            $transaction_type = 'income';
+            $income_report = $bm_income_report->execute($start_month, $end_month, $org_type, $org_type_id, $transaction_type, $report_approved_status, $is_need_sum);
 
-        // -------------------------- bm expense report ------------------------------------
-        $bm_expense_report = new BmReport();
-        $transaction_type = 'expense';
-        $expense_report = $bm_expense_report->execute($start_month, $end_month, $org_type, $org_type_id, $transaction_type, $report_approved_status, $is_need_sum);
-        // -------------------------- bm expense report ------------------------------------
+            // -------------------------- bm income report ------------------------------------
 
-        if (empty($report_sum_data)) {
-            return (object) [];
-        } else {
-            return (object) [
-                'start_month' => $start_month,
-                'end_month' => $end_month,
-                'report_header' => $report_header,
+            // -------------------------- bm expense report ------------------------------------
+            $bm_expense_report = new BmReport();
+            $transaction_type = 'expense';
+            $expense_report = $bm_expense_report->execute($start_month, $end_month, $org_type, $org_type_id, $transaction_type, $report_approved_status, $is_need_sum);
+            // -------------------------- bm expense report ------------------------------------
 
-                'report_sum_data' => $report_sum_data,
-                'previous_present' => $previous_present,
-                'income_report' => $income_report,
-                'expense_report' => $expense_report,
-            ];
+            if (empty($report_sum_data)) {
+                return (object) [];
+            } else {
+                return (object) [
+                    'start_month' => $start_month,
+                    'end_month' => $end_month,
+                    'report_header' => $report_header,
+
+                    'report_sum_data' => $report_sum_data,
+                    'previous_present' => $previous_present,
+                    'income_report' => $income_report ?? [],
+                    'expense_report' => $expense_report,
+                ];
+            }
+        } catch (\Throwable $th) {
+            return response()->json([
+                'status' => 'error',
+                'message' => $th->getMessage(),
+            ]);
         }
     }
 }

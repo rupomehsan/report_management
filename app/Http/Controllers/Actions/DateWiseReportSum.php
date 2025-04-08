@@ -18,6 +18,7 @@ class DateWiseReportSum
         $report_approved_status = ['approved'],
         $report_info_ids = null // Allow passing report_info_ids directly
     ) {
+        // dd($report_info_ids);
         if (is_null($report_info_ids)) {
             $s_month = Carbon::parse($start_month);
             $e_month = Carbon::parse($end_month);
@@ -31,6 +32,8 @@ class DateWiseReportSum
                 ->whereIn('report_approved_status', $approved_status_array)
                 ->pluck('id')
                 ->toArray();
+
+            // dd($report_info_ids);
         }
 
         // Validate $report_info_ids to ensure it's an array
@@ -49,6 +52,7 @@ class DateWiseReportSum
             $selected_columns = array_slice($all_columns, 2, -4);
 
             foreach ($selected_columns as $selected_column) {
+                // dd($table_name, $selected_column);
                 if ($table_name == 'montobbos' || $table_name == 'ward_montobbos' || $table_name == 'thana_montobbos') {
                     $text = DB::table($table_name)->whereIn('report_info_id', $report_info_ids)
                         ->selectRaw("GROUP_CONCAT(montobbo SEPARATOR '\n') as montobbo")
@@ -58,6 +62,7 @@ class DateWiseReportSum
                 } else {
                     $sum = DB::table($table_name)->whereIn('report_info_id', $report_info_ids)->sum($selected_column);
                     $result[$table_name][$selected_column] = (int) $sum == 0 ? "" : (int) $sum;
+                    // dd($result);
                 }
             }
         }
@@ -194,7 +199,7 @@ class DateWiseReportSum
             "thana_songothon4_organizational_structures",
             "thana_songothon5_dawat_and_paribarik_units",
             "thana_songothon6_emarot_kayems",
-            "thana_songothon7_bidayi_students_connects",
+            "thana_songothon6_bidayi_students_connects",
             "thana_songothon8_associate_and_side_organizations",
             "thana_songothon9_sofors",
             "thana_songothon10_iyanot_data",

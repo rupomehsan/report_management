@@ -30462,77 +30462,37 @@
                             <td class="p-0 vertical_align_baseline" colspan="2">
                                 <table class="border_none">
                                     <tbody>
-                                        <tr>
+                                        <tr
+                                            v-for="(
+                                                bm_cat, index
+                                            ) in bm_income_categories"
+                                            :key="index"
+                                        >
                                             <td
                                                 class="text-start px-2 w-50 border_bottom"
                                             >
-                                                প্রাপ্ত নিছাব
+                                                {{ bm_cat.title }}
                                             </td>
-                                            <td class="border_left_bottom"></td>
-                                        </tr>
-                                        <tr>
-                                            <td
-                                                class="text-start px-2 w-50 border_bottom"
-                                            >
-                                                সরাসরি ইয়ানত
+                                            <td class="border_left_bottom">
+                                                <input
+                                                    name="bm_entry"
+                                                    :value="
+                                                        formatBangla(
+                                                            bm_categoty_amount(
+                                                                bm_cat.id
+                                                            )
+                                                        )
+                                                    "
+                                                    @change="
+                                                        income_store(
+                                                            bm_cat.id,
+                                                            $event.target.value
+                                                        )
+                                                    "
+                                                    type="text"
+                                                    class="bg-input w-100 text-center"
+                                                />
                                             </td>
-                                            <td class="border_left_bottom"></td>
-                                        </tr>
-                                        <tr>
-                                            <td
-                                                class="text-start px-2 w-50 border_bottom"
-                                            >
-                                                এককালীন
-                                            </td>
-                                            <td class="border_left_bottom"></td>
-                                        </tr>
-                                        <tr>
-                                            <td
-                                                class="text-start px-2 w-50 border_bottom"
-                                            >
-                                                নির্বাচনী ফান্ড
-                                            </td>
-                                            <td class="border_left_bottom"></td>
-                                        </tr>
-                                        <tr>
-                                            <td
-                                                class="text-start px-2 w-50 border_bottom"
-                                            >
-                                                শহীদ ফান্ড
-                                            </td>
-                                            <td class="border_left_bottom"></td>
-                                        </tr>
-                                        <tr>
-                                            <td
-                                                class="text-start px-2 w-50 border_bottom"
-                                            >
-                                                কল্যাণ তহবিল
-                                            </td>
-                                            <td class="border_left_bottom"></td>
-                                        </tr>
-                                        <tr>
-                                            <td
-                                                class="text-start px-2 w-50 border_bottom"
-                                            >
-                                                সমাজকল্যাণ ও সমাজসেবা
-                                            </td>
-                                            <td class="border_left_bottom"></td>
-                                        </tr>
-                                        <tr>
-                                            <td
-                                                class="text-start px-2 w-50 border_bottom"
-                                            >
-                                                প্রকাশনা
-                                            </td>
-                                            <td class="border_left_bottom"></td>
-                                        </tr>
-                                        <tr>
-                                            <td
-                                                class="text-start px-2 w-50 border_bottom"
-                                            >
-                                                বই বিক্রি
-                                            </td>
-                                            <td class="border_left_bottom"></td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -30540,77 +30500,37 @@
                             <td class="p-0 vertical_align_baseline" colspan="2">
                                 <table class="border_none">
                                     <tbody>
-                                        <tr>
+                                        <tr
+                                            v-for="(
+                                                expense_cat, index
+                                            ) in bm_expense_categories"
+                                            :key="index"
+                                        >
                                             <td
                                                 class="text-start px-2 w-50 border_bottom"
                                             >
-                                                নিছাব পরিশোধ
+                                                {{ expense_cat.title }}
                                             </td>
-                                            <td class="border_left_bottom"></td>
-                                        </tr>
-                                        <tr>
-                                            <td
-                                                class="text-start px-2 w-50 border_bottom"
-                                            >
-                                                এককালীন
+                                            <td class="border_left_bottom">
+                                                <input
+                                                    name="bm_entry"
+                                                    :value="
+                                                        formatBangla(
+                                                            expense_categoty_amount(
+                                                                expense_cat.id
+                                                            )
+                                                        )
+                                                    "
+                                                    @change="
+                                                        expense_store(
+                                                            expense_cat.id,
+                                                            $event.target.value
+                                                        )
+                                                    "
+                                                    type="text"
+                                                    class="bg-input w-100 text-center"
+                                                />
                                             </td>
-                                            <td class="border_left_bottom"></td>
-                                        </tr>
-                                        <tr>
-                                            <td
-                                                class="text-start px-2 w-50 border_bottom"
-                                            >
-                                                স্থানীয় খরচ
-                                            </td>
-                                            <td class="border_left_bottom"></td>
-                                        </tr>
-                                        <tr>
-                                            <td
-                                                class="text-start px-2 w-50 border_bottom"
-                                            >
-                                                নির্বাচনী ফান্ড
-                                            </td>
-                                            <td class="border_left_bottom"></td>
-                                        </tr>
-                                        <tr>
-                                            <td
-                                                class="text-start px-2 w-50 border_bottom"
-                                            >
-                                                শহীদ ফান্ড
-                                            </td>
-                                            <td class="border_left_bottom"></td>
-                                        </tr>
-                                        <tr>
-                                            <td
-                                                class="text-start px-2 w-50 border_bottom"
-                                            >
-                                                কল্যাণ তহবিল
-                                            </td>
-                                            <td class="border_left_bottom"></td>
-                                        </tr>
-                                        <tr>
-                                            <td
-                                                class="text-start px-2 w-50 border_bottom"
-                                            >
-                                                সমাজকল্যাণ ও সমাজসেবা
-                                            </td>
-                                            <td class="border_left_bottom"></td>
-                                        </tr>
-                                        <tr>
-                                            <td
-                                                class="text-start px-2 w-50 border_bottom"
-                                            >
-                                                দাওয়াত
-                                            </td>
-                                            <td class="border_left_bottom"></td>
-                                        </tr>
-                                        <tr>
-                                            <td
-                                                class="text-start px-2 w-50 border_bottom"
-                                            >
-                                                অন্যান্য
-                                            </td>
-                                            <td class="border_left_bottom"></td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -30618,21 +30538,45 @@
                         </tr>
                         <tr>
                             <td class="text-end px-2">মোট</td>
-                            <td></td>
+                            <td>
+                                {{ formatBangla(parseInt(total_income) ?? "") }}
+                            </td>
                             <td class="text-end px-2">মোট</td>
-                            <td></td>
+                            <td>
+                                {{
+                                    formatBangla(parseInt(total_expense) ?? "")
+                                }}
+                            </td>
                         </tr>
                         <tr>
                             <td class="text-end px-2">গত মাসের উদ্বৃত্ত</td>
-                            <td></td>
+                            <td>
+                                {{
+                                    formatBangla(parseInt(total_previous) ?? "")
+                                }}
+                            </td>
                             <td class="text-end px-2">এ মাসের উদ্বৃত্ত</td>
-                            <td></td>
+                            <td>
+                                {{
+                                    formatBangla(
+                                        parseInt(total_current_income) ?? ""
+                                    )
+                                }}
+                            </td>
                         </tr>
                         <tr>
                             <td class="text-end px-2">সর্বমোট</td>
-                            <td></td>
+                            <td>
+                                {{
+                                    formatBangla(
+                                        parseInt(total_current_income) ?? ""
+                                    )
+                                }}
+                            </td>
                             <td class="text-end px-2">সর্বমোট</td>
-                            <td></td>
+                            <td>
+                                {{ formatBangla(parseInt(in_total) ?? "") }}
+                            </td>
                         </tr>
                     </tbody>
                 </table>
@@ -30775,10 +30719,10 @@ export default {
 
     created() {
         this.uploaded_data();
-        // this.income_category()
-        // this.expense_category()
-        // this.bm_category_wise()/
-        // this.bm_expense_category_wise()
+        this.income_category();
+        this.expense_category();
+        this.bm_category_wise();
+        this.bm_expense_category_wise();
         this.report_status();
     },
     watch: {
@@ -30834,6 +30778,8 @@ export default {
                     (this.previous_present = res.data.data.previous_present),
                     (this.income_report = res.data.data.income_report),
                     (this.expense_report = res.data.data.expense_report);
+                this.total_income = res.data.data.income_report?.total_amount;
+                this.total_expense = res.data.data.expense_report?.total_amount;
 
                 (this.total_previous = res.data.total_previous),
                     (this.total_current_income = res.data.total_current_income),
@@ -31239,36 +31185,58 @@ export default {
                     console.error("Error uploading data", error);
                 });
         },
-        implementation_rate(target, achieved) {
-            if (target && achieved && target !== 0) {
-                return Math.round((achieved / target) * 100) + "%";
+        // implementation_rate(target, achieved) {
+        //     if (target && achieved && target !== 0) {
+        //         return Math.round((achieved / target) * 100) + "%";
+        //     }
+
+        //     return " ";
+        // },
+        bm_expense_category_wise: async function () {
+            const month = this.$route.params.month;
+
+            let res = await axios.get("/thana/expense-category-wise", {
+                params: {
+                    month: month,
+                },
+            });
+            if (res) {
+                this.expense_cat_wise = res.data?.data;
             }
-
-            return " ";
         },
-        // expense_category: async function () {
-        //     let res = await axios.get('/ward-bm-expense-category/all')
-        //     if (res.data.status == 'success') {
-        //         this.bm_expense_categories = res?.data?.data?.data
-        //     }
+        bm_category_wise: async function () {
+            const month = this.$route.params.month;
 
-        // },
-        // income_category: async function () {
-        //     let res = await axios.get('/ward-bm-income-category/all')
-        //     if (res) {
-        //         this.bm_income_categories = res.data?.data
-        //     }
-
-        // },
-        income_store: function (ward_bm_income_category_id, amount) {
+            let res = await axios.get("/thana/income-category-wise", {
+                params: {
+                    month: month,
+                },
+            });
+            if (res) {
+                this.bm_cat_wise = res.data?.data;
+            }
+        },
+        expense_category: async function () {
+            let res = await axios.get("/thana-bm-expense-category/all");
+            if (res.data.status == "success") {
+                this.bm_expense_categories = res?.data?.data?.data;
+            }
+        },
+        income_category: async function () {
+            let res = await axios.get("/thana-bm-income-category/all");
+            if (res) {
+                this.bm_income_categories = res.data?.data;
+            }
+        },
+        income_store: function (thana_bm_income_category_id, amount) {
             const month = this.$route.params.month;
             const formData = {
-                ward_bm_income_category_id: ward_bm_income_category_id,
+                thana_bm_income_category_id: thana_bm_income_category_id,
                 amount: amount,
                 month: month,
             };
             axios
-                .post("/ward-bm-income/store", formData)
+                .post("/thana-bm-income/store", formData)
                 .then(function (response) {
                     window.toaster(
                         "New BM entry Created successfuly",
@@ -31280,15 +31248,61 @@ export default {
                 });
         },
 
-        expense_store: function (ward_bm_expense_category_id, amount) {
+        bm_categoty_amount: function (bm_cat_id) {
+            // console.log("log", bm_cat_id, this.bm_cat_wise);
+            if (this.bm_cat_wise != null) {
+                // console.log("inside",bm_cat_id,this.bm_cat_wise )
+                const element = this.bm_cat_wise.find((el) => {
+                    if (
+                        el.thana_bm_income_category &&
+                        el.thana_bm_income_category.id == bm_cat_id
+                    ) {
+                        return el;
+                    }
+                });
+                // console.log("inside element",element)
+                if (element) {
+                    return element.amount;
+                } else {
+                    // console.log("element not found")
+                }
+            } else {
+                return "";
+            }
+        },
+        expense_categoty_amount: function (expense_cat_id) {
+            // console.log("expense_categoty_amount",expense_cat_id);
+            // console.log("this.expense_cat_wise",this.expense_cat_wise);
+
+            if (this.expense_cat_wise != null) {
+                // console.log("expanxe inside",this.expense_cat_wise);
+                const element = this.expense_cat_wise.find((element) => {
+                    if (
+                        element.thana_bm_expense_category &&
+                        element.thana_bm_expense_category.id == expense_cat_id
+                    ) {
+                        return element;
+                    }
+                });
+                if (element) {
+                    return element.amount;
+                } else {
+                    // console.log("element not found")
+                }
+            } else {
+                return "";
+            }
+        },
+
+        expense_store: function (thana_bm_expense_category_id, amount) {
             const month = this.$route.params.month;
             const formData = {
-                ward_bm_expense_category_id: ward_bm_expense_category_id,
+                thana_bm_expense_category_id: thana_bm_expense_category_id,
                 amount: amount,
                 month: month,
             };
             axios
-                .post("/ward-bm-expense/store", formData)
+                .post("/thana-bm-expense/store", formData)
                 .then(function (response) {
                     window.toaster(
                         "New Expense entry Created successfuly",
@@ -31300,20 +31314,37 @@ export default {
                 });
         },
         print_report: function () {
-            const month = this.$route.params.month;
-            const user_id = this.$route.params.user_id;
-            const url = `/ward/report?user_id=${user_id}&month=${month}&print=true`;
-            window.location.href = url;
+            // Set opacity to 0 for all elements with the 'i_icon' class
+            document
+                .querySelectorAll(".i_icon")
+                .forEach((element) => (element.style.opacity = "0"));
 
-            setTimeout(() => {
-                window.print(); // Trigger the print dialog
-            }, 200);
+            // Hide elements with the 'do_not_print' class and apply additional styles
+            document.querySelectorAll(".do_not_print").forEach((element) => {
+                element.style.display = "none";
+                element.setAttribute("style", "display: none !important;");
+            });
+
+            // Hide the print preview element
+            const printPreview = document.querySelector(".print_preview");
+            if (printPreview) printPreview.style.display = "none";
+
+            // Trigger the print dialog
+            window.print();
+            // const month = this.$route.params.month;
+            // const user_id = this.$route.params.user_id;
+            // const url = `/thana/report?user_id=${user_id}&month=${month}&print=true`;
+            // window.location.href = url;
+
+            // setTimeout(() => {
+            //     window.print(); // Trigger the print dialog
+            // }, 200);
         },
 
         implementation_rate: function (target, achieved) {
-            if (target && achieved && target !== 0) {
+            if (target && achieved) {
                 return (
-                    this.formatBangla(Math.round((achieved / target) * 100)) +
+                    this.formatBangla(Math.floor((achieved / target) * 100)) +
                     "%"
                 );
             }

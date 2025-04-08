@@ -297,6 +297,8 @@
 
 
 
+
+
     Route::group(['prefix' => 'thana-rastrio1-political-communication'], function () {
         Route::get('/data', [App\Http\Controllers\Report\Thana\Rastrio\ThanaRastrio1PoliticalCommunicationController::class, 'get_data']);
         Route::post('/store-single', [App\Http\Controllers\Report\Thana\Rastrio\ThanaRastrio1PoliticalCommunicationController::class, 'store_single'])->middleware(ThanaStatusChack::class);
@@ -418,7 +420,6 @@
         Route::post('/bulk_import', [App\Http\Controllers\Bm\Thana\Income\ThanaBmIncomeController::class, 'bulk_import'])->middleware(ThanaStatusChack::class);
     });
 
-
     Route::group(['prefix' => 'thana'], function () {
 
         Route::get('/uploaded-data', [App\Http\Controllers\Thana\ThanaController::class, 'report_upload_api']);
@@ -443,7 +444,6 @@
         Route::post('/remove-ward-report-joma-permission', [App\Http\Controllers\Thana\PermissionController::class, 'remove_ward_report_joma_permission']);
         // Route::post('/toggle-dashboard-permission', [App\Http\Controllers\Thana\PermissionController::class,'toggle_dashboard_permission']);
     });
-
 
 
     Route::group(['prefix' => 'comment'], function () {
